@@ -3,7 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import Earth from './components/earth/earth'
-import Universe from './components/universe/Universe'
+import Universe from './components/universe/universe'
 
 export default function Home() {
   return (
