@@ -9,6 +9,7 @@ export default function Universe({
   return (
     <>
       <ambientLight intensity={2} />
+      <pointLight color="#FFF" position={[3, 0, 3]} intensity={40} />
       <Stars
         radius={300}
         depth={60}

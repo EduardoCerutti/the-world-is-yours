@@ -1,5 +1,7 @@
 import { OrbitControls, useTexture } from '@react-three/drei'
-import { DoubleSide } from 'three'
+import { useFrame } from '@react-three/fiber'
+import { MutableRefObject, useRef } from 'react'
+import { DoubleSide, Mesh } from 'three'
 
 export default function Earth() {
   const [dayMap, cloudsMap, normalMap, specularMap] = useTexture([
@@ -9,10 +11,20 @@ export default function Earth() {
     '/images/textures/8k_earth_specular_map.jpg',
   ])
 
+  const earthRef = useRef() as MutableRefObject<Mesh>
+  const cloudsRef = useRef() as MutableRefObject<Mesh>
+
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime()
+
+    earthRef.current!.rotation.y = elapsedTime / 10
+    cloudsRef.current!.rotation.y = elapsedTime / 10
+  })
+
   return (
     <>
-      <mesh>
-        <sphereGeometry args={[2.005, 32, 32]} />
+      <mesh ref={cloudsRef}>
+        <sphereGeometry args={[2.505, 32, 32]} />
         <meshPhongMaterial
           map={cloudsMap}
           opacity={0.3}
@@ -21,10 +33,15 @@ export default function Earth() {
           side={DoubleSide}
         />
       </mesh>
-      <mesh>
-        <sphereGeometry args={[2, 32, 32]} />
+      <mesh ref={earthRef}>
+        <sphereGeometry args={[2.5, 32, 32]} />
         <meshPhongMaterial specularMap={specularMap} />
-        <meshStandardMaterial map={dayMap} normalMap={normalMap} />
+        <meshStandardMaterial
+          map={dayMap}
+          normalMap={normalMap}
+          metalness={0.4}
+          roughness={0.7}
+        />
         <OrbitControls
           enableZoom={true}
           zoomSpeed={0.6}
