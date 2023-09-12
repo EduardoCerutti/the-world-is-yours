@@ -4,7 +4,7 @@ This is a project to test 3D rendering on the browser using [NextJS], [Typescrip
 
 ### Demonstration
 
-<video src=".github/videos/project.mp4">
+<img src=".github/project.gif">
 
 [NextJS]: https://nextjs.org/
 [Typescript]: https://www.typescriptlang.org/
