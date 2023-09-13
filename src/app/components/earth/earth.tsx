@@ -1,6 +1,6 @@
 import { OrbitControls, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { MutableRefObject, useRef } from 'react'
+import { useRef } from 'react'
 import { DoubleSide, Mesh } from 'three'
 
 export default function Earth() {
@@ -11,8 +11,8 @@ export default function Earth() {
     '/images/textures/8k_earth_specular_map.jpg',
   ])
 
-  const earthRef = useRef() as MutableRefObject<Mesh>
-  const cloudsRef = useRef() as MutableRefObject<Mesh>
+  const earthRef = useRef<Mesh>(null)
+  const cloudsRef = useRef<Mesh>(null)
 
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime()
