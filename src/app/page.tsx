@@ -7,7 +7,7 @@ import Universe from './components/universe/universe'
 import Loading from './components/loading/loading'
 
 export default function Home() {
-  const LOADING_TIME = 4000
+  const LOADING_TIME = 7000
 
   const [isLoading, setIsLoading] = useState(true)
 
