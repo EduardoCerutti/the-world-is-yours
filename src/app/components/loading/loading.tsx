@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from 'react'
 
-export default function Loading({ loadingTime }: { loadingTime: number }) {
+export default function Loading() {
+  const LOADING_TIME = 6000
+
   const [progressBar, setProgressBar] = useState(0)
 
   useEffect(() => {
     setTimeout(() => {
       progressBar < 100 && setProgressBar(progressBar + 1)
-    }, loadingTime / 100)
-  }, [progressBar, loadingTime])
+    }, LOADING_TIME / 100)
+  }, [progressBar, LOADING_TIME])
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-6">
