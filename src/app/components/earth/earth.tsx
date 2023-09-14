@@ -1,15 +1,18 @@
+import { MobileContext } from '@/app/contexts/MobileContext'
 import { OrbitControls, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { DoubleSide, Mesh } from 'three'
 
-export default function Earth({ isMobile }: { isMobile: boolean }) {
+export default function Earth() {
   const [dayMap, cloudsMap, normalMap, specularMap] = useTexture([
     '/images/textures/8k_earth_daymap.jpg',
     '/images/textures/8k_earth_clouds.jpg',
     '/images/textures/8k_earth_normal_map.jpg',
     '/images/textures/8k_earth_specular_map.jpg',
   ])
+
+  const { isMobile } = useContext(MobileContext)
 
   const earthSize = isMobile ? 1.5 : 2.5
 

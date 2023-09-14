@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Orbitron } from 'next/font/google'
+import { MobileProvider } from './contexts/MobileContext'
 
 export const metadata: Metadata = {
   title: 'The world is yours',
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={orbitron.className}>{children}</body>
+      <body className={orbitron.className}>
+        <MobileProvider>{children}</MobileProvider>
+      </body>
     </html>
   )
 }

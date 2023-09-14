@@ -1,13 +1,14 @@
+import { MobileContext } from '@/app/contexts/MobileContext'
 import { Stars } from '@react-three/drei'
-import React from 'react'
+import { useContext } from 'react'
 
 export default function Universe({
   children,
-  isMobile,
 }: {
   children: React.ReactNode
-  isMobile: boolean
 }) {
+  const { isMobile } = useContext(MobileContext)
+
   const numberOfStars = isMobile ? 5000 : 10000
 
   return (
