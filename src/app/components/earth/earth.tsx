@@ -3,13 +3,15 @@ import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import { DoubleSide, Mesh } from 'three'
 
-export default function Earth() {
+export default function Earth({ isMobile }: { isMobile: boolean }) {
   const [dayMap, cloudsMap, normalMap, specularMap] = useTexture([
     '/images/textures/8k_earth_daymap.jpg',
     '/images/textures/8k_earth_clouds.jpg',
     '/images/textures/8k_earth_normal_map.jpg',
     '/images/textures/8k_earth_specular_map.jpg',
   ])
+
+  const earthSize = isMobile ? 1.5 : 2.5
 
   const earthRef = useRef<Mesh>(null)
   const cloudsRef = useRef<Mesh>(null)
@@ -24,7 +26,7 @@ export default function Earth() {
   return (
     <>
       <mesh ref={cloudsRef}>
-        <sphereGeometry args={[2.505, 32, 32]} />
+        <sphereGeometry args={[earthSize + 0.005, 32, 32]} />
         <meshPhongMaterial
           map={cloudsMap}
           opacity={0.3}
@@ -34,7 +36,7 @@ export default function Earth() {
         />
       </mesh>
       <mesh ref={earthRef}>
-        <sphereGeometry args={[2.5, 32, 32]} />
+        <sphereGeometry args={[earthSize, 32, 32]} />
         <meshPhongMaterial specularMap={specularMap} />
         <meshStandardMaterial
           map={dayMap}

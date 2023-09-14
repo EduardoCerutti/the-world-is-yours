@@ -3,9 +3,13 @@ import React from 'react'
 
 export default function Universe({
   children,
+  isMobile,
 }: {
   children: React.ReactNode
+  isMobile: boolean
 }) {
+  const numberOfStars = isMobile ? 5000 : 10000
+
   return (
     <>
       <ambientLight intensity={2} />
@@ -14,7 +18,7 @@ export default function Universe({
         radius={300}
         depth={60}
         factor={7}
-        count={10000}
+        count={numberOfStars}
         fade={true}
         saturation={0}
       />
