@@ -15,10 +15,10 @@ export default function Loading() {
         <div className="flex justify-center absolute w-80 md:w-96">
           <span className="z-10">{`${progress}%`}</span>
         </div>
-        <div className="flex bg-slate-600 animate-pulse rounded w-80 md:w-96 h-7">
+        <div className="flex bg-slate-600 rounded w-80 md:w-96 h-7">
           <div
             className="bg-cyan-500 animate-pulse rounded"
-            style={{ width: `${progress}%` }}
+            style={{ width: progress < 50 ? 25 : `${progress}%` }}
           />
         </div>
       </div>
